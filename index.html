@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticat - O Bot do Futuro para Discord</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap');
+
+        :root {
+            --primary-color: #7289DA;
+            --secondary-color: #2C2F33;
+            --accent-color: #FFD700;
+            --text-color: #FFFFFF;
+            --background-color: #23272A;
+            --gradient-1: linear-gradient(45deg, #7289DA, #5865F2);
+            --gradient-2: linear-gradient(45deg, #FFD700, #FFA500);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--gradient-1);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            color: var(--accent-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .logo::before {
+            content: "🐱";
+            position: absolute;
+            font-size: 2rem;
+            top: -10px;
+            left: -30px;
+            animation: orbit 10s linear infinite;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+            to   { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-2);
+            color: var(--secondary-color);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature {
+            flex-basis: calc(33.333% - 2rem);
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .about {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(44, 47, 51, 0.5);
+            border-radius: 8px;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .creators {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .creator {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background: var(--gradient-1);
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .creator:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        /* Custom Icons */
+        .icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+
+        .icon-economy::before,
+        .icon-economy::after {
+            content: "";
+            position: absolute;
+            background-color: var(--accent-color);
+        }
+
+        .icon-economy::before {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        .icon-economy::after {
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+        }
+
+        .icon-game {
+            background: 
+                linear-gradient(45deg, var(--accent-color) 25%, transparent 25%) -10px 0,
+                linear-gradient(-45deg, var(--accent-color) 25%, transparent 25%) -10px 0,
+                linear-gradient(45deg, transparent 75%, var(--accent-color) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--accent-color) 75%);
+            background-size: 20px 20px;
+            border-radius: 10px;
+        }
+
+        .icon-clan {
+            border: 3px solid var(--accent-color);
+            border-radius: 50% 50% 0 0;
+            overflow: hidden;
+        }
+
+        .icon-clan::before {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        /* New Sections */
+        .testimonials {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .testimonial {
+            background-color: rgba(44, 47, 51, 0.5);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            opacity: 0.5;
+        }
+
+        .faq {
+            margin-top: 4rem;
+        }
+
+        .faq h2 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .stat {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 8px;
+            flex-basis: 30%;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .feature {
+                flex-basis: 100%;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo float">Ticat</div>
+            <div class="subtitle">O Bot do Futuro para o seu Discord</div>
+            <a href="https://discord.com/oauth2/authorize?client_id=1171851177151959195&permissions=8&integration_type=0&scope=bot+applications.commands" class="cta-button">Adicionar ao Discord</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="features">
+            <div class="feature">
+                <div class="icon icon-economy"></div>
+                <h3>Economia Futurista</h3>
+                <p>Participe de um sistema econômico intergaláctico com moedas virtuais e itens únicos.</p>
+            </div>
+            <div class="feature">
+                <div class="icon icon-game"></div>
+                <h3>Mini-games Inovadores</h3>
+                <p>Desfrute de jogos como pesca espacial, mineração de asteroides e agricultura em outros planetas.</p>
+            </div>
+            <div class="feature">
+                <div class="icon icon-clan"></div>
+                <h3>Sistema de Clãs</h3>
+                <p>Crie ou junte-se a clãs intergalácticos e compita com outros jogadores em todo o universo.</p>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>Sobre o Ticat</h2>
+            <p>Ticat é mais que um simples bot de Discord - é uma porta de entrada para uma experiência futurista única. Com recursos inovadores e uma jogabilidade envolvente, Ticat transforma seu servidor em uma aventura intergaláctica. Explore novos mundos, construa sua economia, e forme alianças poderosas, tudo isso sem sair do seu servidor Discord!</p>
+        </section>
+
+        <section class="stats">
+            <div class="stat">
+                <div class="stat-number" id="serverCount">500+</div>
+                <div>Servidores</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="userCount">50,000+</div>
+                <div>Usuários</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="commandCount">100+</div>
+                <div>Comandos</div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>O que os usuários dizem</h2>
+            <div class="testimonial">
+                <p>"Ticat revolucionou nosso servidor! Os mini-games são viciantes e a economia virtual criou uma nova dinâmica entre nossos membros."</p>
+                <p>- Ana, Administradora de Servidor</p>
+            </div>
+            <div class="testimonial">
+                <p>"A facilidade de uso e os recursos únicos do Ticat o tornam indispensável. Não consigo imaginar nosso servidor sem ele!"</p>
+                <p>- Carlos, Moderador</p>
+            </div>
+        </section>
+
+        <section class="faq">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Como adiciono o Ticat ao meu servidor?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Basta clicar no botão "Adicionar ao Discord" no topo da página e seguir as instruções para autorizar o bot em seu servidor.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    O Ticat é gratuito?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Sim, o Ticat é completamente gratuito para usar! Todos os recursos principais estão disponíveis sem custo.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Como inicio minha aventura no Ticat?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Após adicionar o Ticat ao seu servidor, use o comando ;ajuda para criar seu perfil e começar sua jornada intergaláctica!
+                </div>
+            </div>
+        </section>
+
+        <section class="creators">
+            <h2>Criadores</h2>
+            <div class="creator">NaonyDev</div>
+            <div class="creator">DaviDev (Bolinha)</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ticat Bot. Todos os direitos reservados.</p>
+        <p>
+            <a href="terms.html">Termos de Serviço</a> | 
+            <a href="privacy.html">Política de Privacidade</a> | 
+            <a href="https://discord.gg/2JXeEd54ah">Suporte</a>
+        </p>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', event => {
+                const answer = item.querySelector('.faq-answer');
+                const question = item.querySelector('.faq-question');
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                question.querySelector('span').textContent = answer.style.display === 'block' ? '-' : '+';
+            });
+        });
+
+        // Animated Counter
+        function animateValue(id, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                document.getElementById(id).textContent = value + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Start animation when element is in view
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            const stats = document.querySelector('.stats');
+            if (isElementInViewport(stats) && !stats.classList.contains('animated')) {
+                stats.classList.add('animated');
+                animateValue("serverCount", 0, 500, 2000);
+                animateValue("userCount", 0, 50000, 2000);
+                animateValue("commandCount", 0, 100, 2000);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        
+        // Trigger initial check
+        handleScroll();
+    </script>
+</body>
+</html>
