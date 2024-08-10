@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Serviço - Ticat Bot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #7289DA;
+            --secondary-color: #2C2F33;
+            --accent-color: #FFD700;
+            --text-color: #FFFFFF;
+            --background-color: #23272A;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+        }
+
+        .logo::before {
+            content: "🐱";
+            position: absolute;
+            font-size: 2rem;
+            top: -10px;
+            left: -30px;
+            animation: orbit 10s linear infinite;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+            to   { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 2rem;
+            font-weight: 600;
+        }
+
+        .section {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary-color) 10%, transparent 10%),
+                        radial-gradient(circle, var(--primary-color) 10%, transparent 10%);
+            background-size: 20px 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: scale(5);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .section:hover::before {
+            opacity: 0.1;
+            transform: scale(1);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 2px 5px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        .highlight:hover {
+            background-color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem 0;
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+
+        .creators {
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .creator {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 5px 10px;
+            background-color: var(--primary-color);
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .creator:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .animated-bg::before,
+        .animated-bg::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: radial-gradient(circle, var(--accent-color) 2px, transparent 2px);
+            background-size: 40px 40px;
+            animation: stars 60s linear infinite;
+            opacity: 0.5;
+        }
+
+        .animated-bg::after {
+            background-size: 60px 60px;
+            animation-duration: 90s;
+        }
+
+        @keyframes stars {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--accent-color);
+            transform-origin: 0 0;
+            transform: scaleX(0);
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator"></div>
+    <header>
+        <div class="animated-bg"></div>
+        <div class="logo">Ticat</div>
+        <div class="subtitle">O Bot do Futuro</div>
+    </header>
+    <div class="container">
+        <h1>Termos de Serviço do Bot Ticat</h1>
+        
+        <div class="section">
+            <h2>1. Aceitação dos Termos</h2>
+            <p>Ao usar nosso Bot Ticat no Discord, você concorda em cumprir e ficar vinculado a estes Termos de Serviço. Se você não concordar com algum destes termos, você não deve usar o bot.</p>
+        </div>
+        
+        <div class="section">
+            <h2>2. Descrição do Serviço</h2>
+            <p>O Bot Ticat oferece várias funcionalidades inovadoras, incluindo, mas não se limitando a:</p>
+            <ul>
+                <li>Sistema de economia virtual futurista</li>
+                <li>Sistemas de jogos como pesca espacial, mineração de asteroides e agricultura em outros planetas</li>
+                <li>Sistema de clãs intergalácticos</li>
+                <li>Duelos entre usuários com tecnologia avançada</li>
+                <li>Sistemas de recompensas diárias e rankings universais</li>
+            </ul>
+        </div>
+        
+        <!-- Adicione as outras seções aqui, seguindo o mesmo padrão -->
+        
+        <div class="section">
+            <h2>11. Contato</h2>
+            <p>Se você tiver alguma dúvida sobre estes Termos de Serviço, entre em contato conosco através do servidor oficial do Ticat no Discord.</p>
+        </div>
+    </div>
+    <footer>
+        <p>Ao usar o Bot Ticat no Discord, você reconhece que leu, entendeu e concorda em ficar vinculado a estes Termos de Serviço.</p>
+        <p>Última atualização: 10 de agosto de 2024</p>
+        <div class="creators">
+            <p>Criado com dedicação por:</p>
+            <span class="creator">NaonyDev</span>
+            <span class="creator">DaviDev (Bolinha)</span>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            let scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrollPercentage / 100})`;
+        });
+    </script>
+</body>
+</html>
